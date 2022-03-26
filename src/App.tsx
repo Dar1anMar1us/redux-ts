@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './App.scss';
+import logo from "./logo.svg"
+import "./App.scss"
 
-function App() {
+const App : React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
