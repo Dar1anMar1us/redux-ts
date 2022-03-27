@@ -6,7 +6,7 @@ export interface Todo {
 
 export interface CreateTodoType {
     type: "CREATE_TODO",
-    payload: Todo
+    payload: string
 }
 
 export interface RemoveTodoType {

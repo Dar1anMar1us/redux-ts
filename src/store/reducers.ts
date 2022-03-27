@@ -3,13 +3,13 @@ import { Todo, CreateTodoType, RemoveTodoType } from "./types";
 
 type Action = CreateTodoType | RemoveTodoType
 
-export const todos = (state : Todo[], action : Action) => {
+export const todos = (state : Todo[] = [], action : Action) => {
     const { type, payload } = action
     switch (type) {
         case CREATE_TODO:
             return state.concat({
                 id: Date.now(),
-                text: payload.text,
+                text: payload,
                 isCompleted: false
             })
         case REMOVE_TODO:
