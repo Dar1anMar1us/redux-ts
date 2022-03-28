@@ -1,24 +1,24 @@
-import logo from "./logo.svg"
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
 import "./App.scss"
+import Spinner from "./components/Spinner";
 
 const App : React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Routes>
+            <Route path="/" element={<Spinner />} />
+            <Route path="/about" element={
+              <>
+                <h2>Make something great!</h2>
+                <Link className="App-link" to={"/"}>Home</Link>
+              </>
+            } />
+          </Routes>
+        </header>
+      </div>
+    </BrowserRouter>
   );
 }
 
