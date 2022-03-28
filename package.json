@@ -1,6 +1,8 @@
 {
   "name": "ts-redux",
   "version": "0.1.0",
+  "description": "My React ecosystem",
+  "main": "src/index.tsx",
   "private": true,
   "dependencies": {
     "@types/node": "^16.7.13",
@@ -18,6 +20,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .tsx"
   },
+  "author": "Darian Chirca",
+  "license": "MIT",
   "eslintConfig": {
     "extends": [
       "react-app"
