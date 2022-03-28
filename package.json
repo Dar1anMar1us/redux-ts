@@ -1,8 +1,7 @@
 {
-  "name": "create-dmc-app",
-  "version": "0.1.0",
+  "name": "@dar1anmar1us/create-dmc-app",
+  "version": "0.1.2",
   "description": "My React ecosystem",
-  "main": "src/index.tsx",
   "dependencies": {
     "@types/node": "^16.7.13",
     "@types/react": "^17.0.20",
@@ -47,5 +46,9 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "sass": "^1.49.9"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "git://github.com/Dar1anMar1us/create-dmc-app"
 }
