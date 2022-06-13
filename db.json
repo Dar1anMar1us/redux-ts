@@ -1,10 +1,3 @@
 {
-  "tasks": [
-    {
-      "text": "Demo",
-      "day": "12 June 2022",
-      "reminder": false,
-      "id": 1
-    }
-  ]
+  "tasks": []
 }
