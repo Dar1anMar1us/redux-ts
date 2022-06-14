@@ -1,10 +1,11 @@
-import { CREATE_TODO, REMOVE_TODO, FETCH_ALL_TODOS, UPDATE_TODO } from "./actions";
-import { ICreateTodo, IRemoveTodo, IFetchAllTodos, IUpdateTodo, IState } from "./types";
+import { CREATE_TODO, REMOVE_TODO, FETCH_ALL_TODOS, UPDATE_TODO, INCREMENT_COUNTER, DECREMENT_COUNTER } from "./actions";
+import { ICreateTodo, IRemoveTodo, IFetchAllTodos, IUpdateTodo, IState, IIncrementCounter, IDecrementCounter } from "./types";
 
-type Action = ICreateTodo | IRemoveTodo | IFetchAllTodos | IUpdateTodo
+type Action = ICreateTodo | IRemoveTodo | IFetchAllTodos | IUpdateTodo | IIncrementCounter | IDecrementCounter
 
 const initialState = {
-    todos: []
+    todos: [],
+    counter: 1
 }
 
 export const trunk = (state : IState = initialState, action : Action) => {
@@ -28,6 +29,16 @@ export const trunk = (state : IState = initialState, action : Action) => {
                 todos: state.todos.map((todo) => (
                     todo.id === payload ? {...todo, reminder: !todo.reminder} : todo
                 ))
+            }
+        case INCREMENT_COUNTER:
+            return {
+                ...state,
+                counter: state.counter ? state.counter + 1 : 1
+            }
+        case DECREMENT_COUNTER:
+            return {
+                ...state,
+                counter: state.counter ? state.counter - 1 : 0 - 1
             }
         default:
            return state

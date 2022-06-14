@@ -6,7 +6,8 @@ export interface Todo {
 }
 
 export interface IState {
-    todos: Todo[]
+    todos: Todo[],
+    counter: number
 }
 
 export interface IFetchAllTodos {
@@ -26,5 +27,15 @@ export interface IUpdateTodo {
 
 export interface IRemoveTodo {
     type: "REMOVE_TODO",
+    payload: number
+}
+
+export interface IIncrementCounter {
+    type: "INCREMENT_COUNTER",
+    payload: number
+}
+
+export interface IDecrementCounter {
+    type: "DECREMENT_COUNTER",
     payload: number
 }

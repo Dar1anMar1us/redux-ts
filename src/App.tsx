@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import "./App.scss"
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { fetchAllTodos, removeTodo, updateTodo } from "./store/actions"
 import Header from './components/Header'
 import Button from './components/Button'
@@ -15,7 +15,7 @@ const App : React.FC = () => {
 
   const [showAddTodo, setShowAddTodo] = useState(false)
   const dispatch = useDispatch()
-  const state = useSelector((state: RootState | any) => state.trunk)
+  const todos = useSelector((state: RootState | any) => state.trunk.todos, shallowEqual)
 
   useEffect(() => {
     dispatch(fetchAllTodos())
@@ -24,8 +24,6 @@ const App : React.FC = () => {
   const toggleAddTask = () => {
     setShowAddTodo(!showAddTodo)
   }
-
-  const { todos } = state
 
   return (
     <BrowserRouter>
