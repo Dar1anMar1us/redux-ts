@@ -1,27 +1,27 @@
-// Fetch all tasks
-export const fetchTasks = async () => {
-    const res = await fetch('http://localhost:5000/tasks')
+// Fetch all todos
+export const fetchTodos = async () => {
+    const res = await fetch('http://localhost:5000/todos')
     const data = await res.json()
     
     return data
 }
 
-// Fetch Task
-export const fetchTask = async (id: number) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`)
+// Fetch Todo
+export const fetchTodo = async (id: number) => {
+    const res = await fetch(`http://localhost:5000/todos/${id}`)
     const data = await res.json()
 
     return data
 }
 
-// Add Task
-export const addTask = async (task: any) => {
-    const res = await fetch('http://localhost:5000/tasks', {
+// Add Todo
+export const addTodo = async (todo: any) => {
+    const res = await fetch('http://localhost:5000/todos', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify(todo),
     })
 
     const data = await res.json()
@@ -29,22 +29,19 @@ export const addTask = async (task: any) => {
     return data
 }
 
-// Delete Task
-export const deleteTask = async (id: number) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+// Delete Todo
+export const deleteTodo = async (id: number) => {
+    fetch(`http://localhost:5000/todos/${id}`, {
         method: 'DELETE',
     })
-    // res.status === 200
-    //     ? setTasks(tasks.filter((task: any) => task.id !== id))
-    //     : console.log('Error Deleting This Task')
 }
 
 // Toggle Reminder
 export const toggleReminder = async (id: number) => {
-    const taskToToggle = await fetchTask(id)
+    const taskToToggle = await fetchTodo(id)
     const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder }
 
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const res = await fetch(`http://localhost:5000/todos/${id}`, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
@@ -55,10 +52,4 @@ export const toggleReminder = async (id: number) => {
     const data = await res.json()
 
     return data
-
-    // setTasks(
-    //     tasks.map((task: any) =>
-    //     task.id === id ? { ...task, reminder: data.reminder } : task
-    //     )
-    // )
 }

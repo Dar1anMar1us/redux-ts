@@ -1,25 +1,34 @@
-import { CREATE_TODO, REMOVE_TODO, FETCH_ALL_TODOS } from "./actions";
-import { Todo, CreateTodoType, RemoveTodoType, FetchAllTodosType } from "./types";
+import { CREATE_TODO, REMOVE_TODO, FETCH_ALL_TODOS, UPDATE_TODO } from "./actions";
+import { ICreateTodo, IRemoveTodo, IFetchAllTodos, IUpdateTodo, IState } from "./types";
 
-type Action = CreateTodoType | RemoveTodoType | FetchAllTodosType
+type Action = ICreateTodo | IRemoveTodo | IFetchAllTodos | IUpdateTodo
 
-export const todos = (state : Todo[] = [], action : Action) => {
+const initialState = {
+    todos: []
+}
+
+export const trunk = (state : IState = initialState, action : Action) => {
     const { type, payload } = action
     switch (type) {
         case FETCH_ALL_TODOS:
             return {
-                ...payload
+                todos: [...payload]
             }
         case CREATE_TODO:
-            console.log(payload)
-            console.log(state)
             return {
                 ...state,
-                payload
+                todos: [...state.todos, payload]
             }
-            
-        // case REMOVE_TODO:
-            
+        case REMOVE_TODO:
+            return {
+                todos: state.todos.filter((todo) => todo.id !== payload)
+            }
+        case UPDATE_TODO:
+            return {
+                todos: state.todos.map((todo) => (
+                    todo.id === payload ? {...todo, reminder: !todo.reminder} : todo
+                ))
+            }
         default:
            return state
     }

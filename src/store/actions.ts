@@ -1,17 +1,16 @@
 import { Todo } from "./types"
 import { Dispatch } from 'redux';
-import { addTask, deleteTask, fetchTasks, toggleReminder } from "../utils/requests";
+import { addTodo, deleteTodo, fetchTodos, toggleReminder } from "../utils/requests";
 
 export const FETCH_ALL_TODOS = "FETCH_ALL_TODOS"
 export const fetchAllTodos = () => {
     return (
         (dispatch: Dispatch | any) => {
-            fetchTasks()
+            fetchTodos()
             .then((todos) => dispatch({
                 type: FETCH_ALL_TODOS,
                 payload: todos
             }))
-            .then(() => dispatch(fetchAllTodos()))
             .catch(err => err)
         }
     )
@@ -26,11 +25,13 @@ export const fetchTodo = (todo: Todo) => ({
 export const CREATE_TODO = "CREATE_TODO"
 export const createTodo = (todo: Todo) => {
     return (
-        (dispatch: Dispatch) => {
-            addTask(todo).then(() => dispatch({
+        (dispatch: Dispatch | any) => {
+            addTodo(todo).then(() => dispatch({
                 type: CREATE_TODO,
                 payload: todo
             }))
+            .then(() => dispatch(fetchAllTodos()))
+            .catch(err => err)
         }
     )
 }
@@ -39,11 +40,12 @@ export const REMOVE_TODO = "REMOVE_TODO"
 export const removeTodo = (id : number) => {
     return (
         (dispatch: Dispatch | any) => {
-            deleteTask(id)
+            deleteTodo(id)
             .then(() => dispatch({
                 type: REMOVE_TODO,
                 payload: id
-            })).then(() => dispatch(fetchAllTodos()))
+            }))
+            .then(() => dispatch(fetchAllTodos()))
             .catch(err => err)
         }
     )

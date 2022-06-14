@@ -5,17 +5,26 @@ export interface Todo {
     reminder: boolean
 }
 
-export interface FetchAllTodosType {
+export interface IState {
+    todos: Todo[]
+}
+
+export interface IFetchAllTodos {
     type: "FETCH_ALL_TODOS",
     payload: Todo[]
 }
 
-export interface CreateTodoType {
+export interface ICreateTodo {
     type: "CREATE_TODO",
     payload: Todo
 }
 
-export interface RemoveTodoType {
+export interface IUpdateTodo {
+    type: "UPDATE_TODO",
+    payload: number
+}
+
+export interface IRemoveTodo {
     type: "REMOVE_TODO",
     payload: number
 }

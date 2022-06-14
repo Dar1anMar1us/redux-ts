@@ -1,14 +1,14 @@
 {
-  "tasks": [
+  "todos": [
     {
       "text": "Doctor",
-      "day": "11 June 2022",
+      "day": "11 May 1989",
       "reminder": true,
       "id": 1
     },
     {
-      "text": "Demo Team",
-      "day": "11 June 2022",
+      "text": "Team Demo",
+      "day": "11 May 2022",
       "reminder": false,
       "id": 2
     }

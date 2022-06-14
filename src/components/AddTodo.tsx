@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createTodo, fetchAllTodos } from '../store/actions'
-import { addTask } from '../utils/requests'
+import { createTodo } from '../store/actions'
 
 const AddTask = () => {
 

@@ -15,7 +15,7 @@ const App : React.FC = () => {
 
   const [showAddTodo, setShowAddTodo] = useState(false)
   const dispatch = useDispatch()
-  const state = useSelector((state: RootState | any) => state)
+  const state = useSelector((state: RootState | any) => state.trunk)
 
   useEffect(() => {
     dispatch(fetchAllTodos())
@@ -25,15 +25,7 @@ const App : React.FC = () => {
     setShowAddTodo(!showAddTodo)
   }
 
-  const removeTodoAndUpdate = (id: number) => {
-    Promise.all([
-      dispatch(removeTodo(id))
-    ]).then(() => dispatch(fetchAllTodos()))
-  }
-
   const { todos } = state
-
-  // console.log(Object.keys(todos).map((key) => [todos[key]]).flat())
 
   return (
     <BrowserRouter>
@@ -52,9 +44,9 @@ const App : React.FC = () => {
             element={
               <>
                 {showAddTodo && <AddTodo />}
-                {Object.keys(todos).map((key) => [todos[key]]).flat().length > 0 ? (
+                {todos.length > 0 ? (
                   <Todos
-                    todos={Object.keys(todos).map((key) => [todos[key]]).flat()}
+                    todos={todos}
                     onDelete={(id: number) => dispatch(removeTodo(id))}
                     onToggle={(id: number) => dispatch(updateTodo(id))}
                   />
