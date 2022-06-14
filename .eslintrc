@@ -16,6 +16,6 @@
       "prefer-const": 2,
       "semi": 0,
       "quotes": 0,
-      "no-alert": 2
+      "no-alert": 0
     }
   }

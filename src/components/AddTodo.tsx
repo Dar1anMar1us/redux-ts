@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createTodo, fetchAllTodos } from '../store/actions'
+import { addTask } from '../utils/requests'
 
-const AddTask = (props: any) => {
+const AddTask = () => {
 
-    const { onAdd } = props
+    const dispatch = useDispatch()
     const [text, setText] = useState('')
     const [day, setDay] = useState('')
     const [reminder, setReminder] = useState(false)
@@ -11,24 +14,29 @@ const AddTask = (props: any) => {
         e.preventDefault()
 
         if (!text) {
-            console.log('Please add a task')
+            alert('Please add a todo')
             return
         }
 
-        onAdd({ text, day, reminder })
+        const todo = { text, day, reminder }
 
-        setText('')
-        setDay('')
-        setReminder(false)
+        Promise.all([
+            dispatch(createTodo(todo))
+        ]).then(() => {
+            setText('')
+            setDay('')
+            setReminder(false)
+        })
+
     }
 
     return (
         <form className='add-form' onSubmit={onSubmit}>
             <div className='form-control'>
-                <label>Task</label>
+                <label>Todo</label>
                 <input
                 type='text'
-                placeholder='Add Task'
+                placeholder='Add Todo'
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 />
@@ -47,7 +55,6 @@ const AddTask = (props: any) => {
                 <input
                 type='checkbox'
                 checked={reminder}
-                // value={reminder}
                 onChange={(e) => setReminder(e.currentTarget.checked)}
                 />
             </div>

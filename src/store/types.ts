@@ -1,12 +1,18 @@
 export interface Todo {
-    id: number,
+    id?: number,
     text: string,
-    isCompleted: boolean
+    day: string,
+    reminder: boolean
+}
+
+export interface FetchAllTodosType {
+    type: "FETCH_ALL_TODOS",
+    payload: Todo[]
 }
 
 export interface CreateTodoType {
     type: "CREATE_TODO",
-    payload: string
+    payload: Todo
 }
 
 export interface RemoveTodoType {

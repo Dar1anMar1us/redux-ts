@@ -18,6 +18,8 @@ const initialState = {}
 const rootReducer = combineReducers(reducers)
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+export type RootState = ReturnType<typeof rootReducer>
+
 export const configureStore = () => {
     const store = createStore(persistedReducer, initialState, applyMiddleware(thunk))
     const persistor = persistStore(store)
