@@ -10,84 +10,84 @@ import About from "./pages/About"
 
 const App : React.FC = () => {
 
-  const [showAddTask, setShowAddTask] = useState(false)
-  const [tasks, setTasks] = useState<any>([])
+  const [showAddTodo, setShowAddTodo] = useState(false)
+  const [todos, setTodos] = useState<any>([])
 
   useEffect(() => {
-    const getTasks = async () => {
-      const tasksFromServer = await fetchTasks()
-      setTasks(tasksFromServer)
+    const getTodos = async () => {
+      const todosFromServer = await fetchTodos()
+      setTodos(todosFromServer)
     }
 
-    getTasks()
+    getTodos()
   }, [])
 
-  // Fetch Tasks
-  const fetchTasks = async () => {
-    const res = await fetch('http://localhost:5000/tasks')
+  // Fetch Todos
+  const fetchTodos = async () => {
+    const res = await fetch('http://localhost:5000/todos')
     const data = await res.json()
 
     return data
   }
 
-  // Fetch Task
-  const fetchTask = async (id: number) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`)
+  // Fetch Todo
+  const fetchTodo = async (id: number) => {
+    const res = await fetch(`http://localhost:5000/todos/${id}`)
     const data = await res.json()
 
     return data
   }
 
-  // Add Task
-  const addTask = async (task: any) => {
-    const res = await fetch('http://localhost:5000/tasks', {
+  // Add Todo
+  const addTodo = async (todo: any) => {
+    const res = await fetch('http://localhost:5000/todos', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify(todo),
     })
 
     const data = await res.json()
 
-    setTasks([...tasks, data])
+    setTodos([...todos, data])
 
   }
 
-  // Delete Task
-  const deleteTask = async (id: number) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+  // Delete Todo
+  const deleteTodo = async (id: number) => {
+    const res = await fetch(`http://localhost:5000/todos/${id}`, {
       method: 'DELETE',
     })
     res.status === 200
-      ? setTasks(tasks.filter((task: any) => task.id !== id))
-      : console.log('Error Deleting This Task')
+      ? setTodos(todos.filter((todo: any) => todo.id !== id))
+      : console.log('Error Deleting This Todo')
   }
 
   // Toggle Reminder
   const toggleReminder = async (id: number) => {
-    const taskToToggle = await fetchTask(id)
-    const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder }
+    const todoToToggle = await fetchTodo(id)
+    const updTodo = { ...todoToToggle, reminder: !todoToToggle.reminder }
 
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const res = await fetch(`http://localhost:5000/todos/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(updTask),
+      body: JSON.stringify(updTodo),
     })
 
     const data = await res.json()
 
-    setTasks(
-      tasks.map((task: any) =>
-        task.id === id ? { ...task, reminder: data.reminder } : task
+    setTodos(
+      todos.map((todo: any) =>
+        todo.id === id ? { ...todo, reminder: data.reminder } : todo
       )
     )
   }
 
-  const toggleAddTask = () => {
-    setShowAddTask(!showAddTask)
+  const toggleAddTodo = () => {
+    setShowAddTodo(!showAddTodo)
   }
 
   return (
@@ -96,9 +96,9 @@ const App : React.FC = () => {
         <div className='header'>
           <Header />
           <Button
-              color={showAddTask ? 'red' : 'green'}
-              text={showAddTask ? 'Close' : 'Add'}
-              onClick={toggleAddTask}
+              color={showAddTodo ? 'red' : 'green'}
+              text={showAddTodo ? 'Close' : 'Add'}
+              onClick={toggleAddTodo}
             />
         </div>
         <Routes>
@@ -106,15 +106,15 @@ const App : React.FC = () => {
             path='/'
             element={
               <>
-                {showAddTask && <AddTodo onAdd={addTask} />}
-                {tasks.length > 0 ? (
+                {showAddTodo && <AddTodo onAdd={addTodo} />}
+                {todos.length > 0 ? (
                   <Todos
-                    todos={tasks}
-                    onDelete={deleteTask}
+                    todos={todos}
+                    onDelete={deleteTodo}
                     onToggle={toggleReminder}
                   />
                 ) : (
-                  'No Tasks To Show'
+                  'No Todos To Show'
                 )}
               </>
             }

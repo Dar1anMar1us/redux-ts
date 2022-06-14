@@ -7331,9 +7331,9 @@ qs@6.9.7:
   resolved "https://registry.npmjs.org/qs/-/qs-6.9.7.tgz"
   integrity sha512-IhMFgUmuNpyRfxA90umL7ByLlgRXu6tIfKPpF5TmcfRLlLCckfP/g3IQmju6jjpu+Hh8rA+2p6A27ZSPOOHdKw==
 
-queue-microtask@^1.2.2:
+queue-microtodo@^1.2.2:
   version "1.2.3"
-  resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
+  resolved "https://registry.npmjs.org/queue-microtodo/-/queue-microtodo-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
 quick-lru@^5.1.1:
@@ -7816,7 +7816,7 @@ run-parallel@^1.1.9:
   resolved "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz"
   integrity sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
   dependencies:
-    queue-microtask "^1.2.2"
+    queue-microtodo "^1.2.2"
 
 safe-buffer@5.1.2, safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"

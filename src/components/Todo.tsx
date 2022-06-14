@@ -6,7 +6,7 @@ const Todo = (props: any) => {
 
     return (
         <div
-        className={`task ${todo.reminder && 'reminder'}`}
+        className={`todo ${todo.reminder && 'reminder'}`}
         onDoubleClick={() => onToggle(todo.id)}
         >
             <h3>

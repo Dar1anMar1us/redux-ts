@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const AddTask = (props: any) => {
+const AddTodo = (props: any) => {
 
     const { onAdd } = props
     const [text, setText] = useState('')
@@ -11,7 +11,7 @@ const AddTask = (props: any) => {
         e.preventDefault()
 
         if (!text) {
-            console.log('Please add a task')
+            console.log('Please add a todo')
             return
         }
 
@@ -25,10 +25,10 @@ const AddTask = (props: any) => {
     return (
         <form className='add-form' onSubmit={onSubmit}>
             <div className='form-control'>
-                <label>Task</label>
+                <label>Todo</label>
                 <input
                 type='text'
-                placeholder='Add Task'
+                placeholder='Add Todo'
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 />
@@ -52,9 +52,9 @@ const AddTask = (props: any) => {
                 />
             </div>
 
-            <input type='submit' value='Save Task' className='btn btn-block' />
+            <input type='submit' value='Save Todo' className='btn btn-block' />
         </form>
     )
 }
 
-export default AddTask
+export default AddTodo
